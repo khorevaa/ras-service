@@ -1,0 +1,19 @@
+@startmindmap
+'https://plantuml.com/mindmap-diagram
+
+caption Microservice concept
+title Control RAS
+
+* <&globe>Service
+** RAS
+*** Запуск/перезапуск службы RAS
+*** Подключение к удаленной службе RAS
+*** Мониторинг работы службы RAS
+*** Подключение к мастер-ноде для регистрации\nи удаленного управления
+** Client
+*** RESTAPI
+*** gRPC
+
+center footer Концепция работы
+
+@endmindmap
