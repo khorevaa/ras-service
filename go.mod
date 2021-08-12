@@ -3,10 +3,12 @@ module github.com/khorevaa/ras-service
 go 1.17
 
 require (
+	github.com/ericcornelissen/stringsx v0.0.0-20201216175831-0d06dc74ad0e
 	github.com/judwhite/go-svc v1.2.1
 	github.com/khorevaa/logos v0.9.8
 	github.com/urfave/cli/v2 v2.3.0
 	golang.org/x/sys v0.0.0-20210124154548-22da62e12c0c
+	golang.org/x/text v0.3.0
 )
 
 require (

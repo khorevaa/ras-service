@@ -5,18 +5,12 @@ import (
 	"github.com/urfave/cli/v2"
 )
 
-var log = logos.New("github.com/v8platform/onec-util")
+var log = logos.New("github.com/khorevaa/ras-service/cmd")
 
 var Commands = []Command{
 
-	&joinCmd{},
-	&disconnectCmd{},
-	//&clusterCmd{
-	//	sub: []Command{
-	//		//&disconnectCmd{},
-	//		&joinCmd{},
-	//	},
-	//},
+	&svcCmd{},
+	&remoteCmd{},
 }
 
 type Command interface {
