@@ -1,11 +1,52 @@
 package main
 
 import (
-	"log"
-	"sync"
+	"golang.org/x/sys/windows/svc"
 
-	"github.com/judwhite/go-svc"
+	"os"
+	"sync"
+	"time"
+
+	"github.com/khorevaa/logos"
+	"github.com/urfave/cli/v2"
 )
+
+// nolint: gochecknoglobals
+var (
+	version = "dev"
+	commit  = ""
+	date    = ""
+	builtBy = ""
+)
+
+var log = logos.New("github.com/v8platform/onec-util")
+
+func main() {
+
+	app := &cli.App{
+		Name:     "onec-util",
+		Version:  version,
+		Compiled: time.Now(),
+		Authors: []*cli.Author{
+			{
+				Name: "Aleksey Khorev",
+			},
+		},
+		Usage:     "Command line utilities for server 1C.Enterprise",
+		UsageText: "onec-util command [command options] [arguments...]",
+		Copyright: "(c) 2021 Khorevaa",
+		//Description: "Command line utilities for server 1S.Enterprise",
+	}
+
+	for _, command := range cmd.Commands {
+		app.Commands = append(app.Commands, command.Cmd())
+	}
+
+	err := app.Run(os.Args)
+	if err != nil {
+		log.Fatal(err.Error())
+	}
+}
 
 // program implements svc.Service
 type program struct {
@@ -13,14 +54,14 @@ type program struct {
 	quit chan struct{}
 }
 
-func main() {
-	prg := &program{}
-
-	// Call svc.Run to start your program/service.
-	if err := svc.Run(prg); err != nil {
-		log.Fatal(err)
-	}
-}
+// func main() {
+// 	prg := &program{}
+//
+// 	// Call svc.Run to start your program/service.
+// 	if err := svc.Run(prg); err != nil {
+// 		log.Fatal(err)
+// 	}
+// }
 
 func (p *program) Init(env svc.Environment) error {
 	log.Printf("is win service? %v\n", env.IsWindowsService())
